@@ -633,7 +633,7 @@ public class EntityRat extends EntityTameable implements IAnimatedEntity {
         if (compound.hasKey("CustomName", 8)) {
             this.setCustomNameTag(compound.getString("CustomName"));
         }
-        if (compound.hasKey("MonsterOwnerUUID", 8) && !compound.getString("MonsterOwnerUUID").equals("")) {
+        if (compound.hasKey("MonsterOwnerUUID", 8)) {
             String s = compound.getString("MonsterOwnerUUID");
             this.setMonsterOwnerId(UUID.fromString(s));
             this.setOwnerMonster(true);
@@ -857,7 +857,7 @@ public class EntityRat extends EntityTameable implements IAnimatedEntity {
     @Override
     public void onLivingUpdate() {
         this.setRatStatus(RatStatus.IDLE);
-        if (!ItemStack.areItemsEqual(this.getUpgradeSlot(), prevUpgrade)) {
+        if (this.getUpgradeSlot() != prevUpgrade) {
             this.onUpgradeChanged();
         }
         super.onLivingUpdate();
